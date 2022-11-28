@@ -1,0 +1,692 @@
+local AI=Instance.new("BoolValue")
+local xDestroyScript=false
+local NDFolder=Instance.new("Folder")
+local ESPNameDisplay=Instance.new("BillboardGui")
+local MainFrame=Instance.new("Frame")
+local Username=Instance.new("TextLabel")
+local HealthDisplay=Instance.new("Frame")
+local Percent=Instance.new("Frame")
+local BV=Instance.new("BoolValue")
+BV.Name="Active"
+BV.Parent=NDFolder
+local BBESPFolder
+local BackBlue
+local Frame
+local BottomBlue
+local Frame_2
+local FrontBlue
+local Frame_3
+local LeftBlue
+local Frame_4
+local RightBlue
+local Frame_5
+local TopBlue
+local Frame_6
+local BOESPFolder
+local BackOrange
+local Frame_1
+local LeftOrange
+local Frame_7
+local RightOrange
+local Frame_8
+local TopOrange
+local Frame_9
+local BottomOrange
+local Frame_10
+local FrontOrange
+local Frame_11
+local FPSPING=Instance.new("ScreenGui")
+local Banner=Instance.new("ImageLabel")
+local FPSTitle=Instance.new("TextLabel")
+local FPS=Instance.new("TextLabel")
+local PINGTitle=Instance.new("TextLabel")
+local PING=Instance.new("TextLabel")
+local RunService=game:GetService("RunService")
+if game:GetService("Workspace").Players:FindFirstChild("AlreadyInstalled") then -- Checking if the ESP is already installed. If so do nothing, let the user know.
+    warn('CodeSecure EZ ESP V0.1 (Phantom Forces) is already installed!')
+    xDestroyScript=true --Useless in Version 0.2 but will be reused in Version 0.4 or higher.
+else -- Since the ESP isn't installed we'll go ahead and set our upvalues set and get our files ready to use.
+    AI.Name="AlreadyInstalled"
+    AI.Parent=game:GetService("Workspace").Players -- We just "installed" the ESP so that it can't be installed a second time.
+    warn('CodeSecure EZ ESP V0.1 (Phantom Forces) is now installed!')
+	NDFolder.Name="NameDisplays"
+	NDFolder.Parent=game:GetService("Workspace").Players
+	ESPNameDisplay.Name="ESPNameDisplay"
+	ESPNameDisplay.Parent=NDFolder
+	ESPNameDisplay.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+	ESPNameDisplay.Active=true
+	ESPNameDisplay.AlwaysOnTop=true
+	ESPNameDisplay.ResetOnSpawn=false
+	ESPNameDisplay.Size=UDim2.new(6, 0, 1, 0)
+	ESPNameDisplay.StudsOffset=Vector3.new(0, 3.5, 0)
+	ESPNameDisplay.Enabled=false
+	MainFrame.Name="MainFrame"
+	MainFrame.Parent=ESPNameDisplay
+	MainFrame.BackgroundColor3=Color3.fromRGB(255, 255, 255)
+	MainFrame.BackgroundTransparency=1.000
+	MainFrame.Size=UDim2.new(1, 0, 1, 0)
+	Username.Name="Username"
+	Username.Parent=MainFrame
+	Username.BackgroundColor3=Color3.fromRGB(255, 255, 255)
+	Username.BackgroundTransparency=1
+	Username.Size=UDim2.new(1, 0,1, 0)
+	Username.Font=Enum.Font.PermanentMarker
+	Username.Text="Getting Player Name..."
+	Username.TextTransparency=0.25
+	Username.TextStrokeTransparency=0
+	Username.TextStrokeColor3=Color3.new(0, 0, 0)
+	Username.TextScaled=true
+	Username.TextColor3=Color3.fromRGB(255, 255, 255)
+	Username.TextSize=25.000
+	Username.TextYAlignment=Enum.TextYAlignment.Top
+	HealthDisplay.Name="HealthDisplay"
+	HealthDisplay.Parent=MainFrame
+	HealthDisplay.BackgroundColor3=Color3.fromRGB(0, 0, 0)
+	HealthDisplay.BorderColor3=Color3.fromRGB(0, 0, 0)
+	HealthDisplay.Position=UDim2.new(0, 0, 0.85, 0)
+	HealthDisplay.Size=UDim2.new(1, 0, 0.15, 0)
+	Percent.Name="Percent"
+	Percent.Parent=HealthDisplay
+	Percent.BackgroundColor3=Color3.fromRGB(0, 255, 0)
+	Percent.BorderSizePixel=0
+	Percent.Size=UDim2.new(1, 0, 1, 0)
+    BBESPFolder=Instance.new("Folder")
+    BBESPFolder.Name="BBESP"
+    BBESPFolder.Parent=game:GetService("Workspace").Players
+    BackBlue=Instance.new("SurfaceGui")
+    Frame=Instance.new("Frame")
+    BottomBlue=Instance.new("SurfaceGui")
+    Frame_2=Instance.new("Frame")
+    FrontBlue=Instance.new("SurfaceGui")
+    Frame_3=Instance.new("Frame")
+    LeftBlue=Instance.new("SurfaceGui")
+    Frame_4=Instance.new("Frame")
+    RightBlue=Instance.new("SurfaceGui")
+    Frame_5=Instance.new("Frame")
+    TopBlue=Instance.new("SurfaceGui")
+    Frame_6=Instance.new("Frame")
+    BackBlue.Name="BackBlue"
+    BackBlue.Parent=BBESPFolder
+    BackBlue.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    BackBlue.AlwaysOnTop=true
+    BackBlue.Face=Enum.NormalId.Back
+    BackBlue.LightInfluence=1.000
+    Frame.Parent=BackBlue
+    Frame.BackgroundColor3=Color3.fromRGB(78, 164, 239)
+    Frame.BackgroundTransparency=0.500
+    Frame.Size=UDim2.new(1, 0, 1, 0)
+    BottomBlue.Name="BottomBlue"
+    BottomBlue.Parent=BBESPFolder
+    BottomBlue.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    BottomBlue.AlwaysOnTop=true
+    BottomBlue.Face=Enum.NormalId.Bottom
+    BottomBlue.LightInfluence=1.000
+    Frame_2.Parent=BottomBlue
+    Frame_2.BackgroundColor3=Color3.fromRGB(78, 164, 239)
+    Frame_2.BackgroundTransparency=0.500
+    Frame_2.Size=UDim2.new(1, 0, 1, 0)
+    FrontBlue.Name="FrontBlue"
+    FrontBlue.Parent=BBESPFolder
+    FrontBlue.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    FrontBlue.AlwaysOnTop=true
+    FrontBlue.LightInfluence=1.000
+    Frame_3.Parent=FrontBlue
+    Frame_3.BackgroundColor3=Color3.fromRGB(78, 164, 239)
+    Frame_3.BackgroundTransparency=0.500
+    Frame_3.Size=UDim2.new(1, 0, 1, 0)
+    LeftBlue.Name="LeftBlue"
+    LeftBlue.Parent=BBESPFolder
+    LeftBlue.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    LeftBlue.AlwaysOnTop=true
+    LeftBlue.Face=Enum.NormalId.Left
+    LeftBlue.LightInfluence=1.000
+    Frame_4.Parent=LeftBlue
+    Frame_4.BackgroundColor3=Color3.fromRGB(78, 164, 239)
+    Frame_4.BackgroundTransparency=0.500
+    Frame_4.Size=UDim2.new(1, 0, 1, 0)
+    RightBlue.Name="RightBlue"
+    RightBlue.Parent=BBESPFolder
+    RightBlue.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    RightBlue.AlwaysOnTop=true
+    RightBlue.Face=Enum.NormalId.Right
+    RightBlue.LightInfluence=1.000
+    Frame_5.Parent=RightBlue
+    Frame_5.BackgroundColor3=Color3.fromRGB(78, 164, 239)
+    Frame_5.BackgroundTransparency=0.500
+    Frame_5.Size=UDim2.new(1, 0, 1, 0)
+    TopBlue.Name="TopBlue"
+    TopBlue.Parent=BBESPFolder
+    TopBlue.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    TopBlue.AlwaysOnTop=true
+    TopBlue.Face=Enum.NormalId.Top
+    TopBlue.LightInfluence=1.000
+    Frame_6.Parent=TopBlue
+    Frame_6.BackgroundColor3=Color3.fromRGB(78, 164, 239)
+    Frame_6.BackgroundTransparency=0.500
+    Frame_6.Size=UDim2.new(1, 0, 1, 0)
+    BOESPFolder=Instance.new("Folder")
+    BOESPFolder.Name="BOESP"
+    BOESPFolder.Parent=game:GetService("Workspace").Players
+    BackOrange=Instance.new("SurfaceGui")
+    Frame_1=Instance.new("Frame")
+    LeftOrange=Instance.new("SurfaceGui")
+    Frame_7=Instance.new("Frame")
+    RightOrange=Instance.new("SurfaceGui")
+    Frame_8=Instance.new("Frame")
+    TopOrange=Instance.new("SurfaceGui")
+    Frame_9=Instance.new("Frame")
+    BottomOrange=Instance.new("SurfaceGui")
+    Frame_10=Instance.new("Frame")
+    FrontOrange=Instance.new("SurfaceGui")
+    Frame_11=Instance.new("Frame")
+    BackOrange.Name="BackOrange"
+    BackOrange.Parent=BOESPFolder
+    BackOrange.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    BackOrange.AlwaysOnTop=true
+    BackOrange.Face=Enum.NormalId.Back
+    BackOrange.LightInfluence=1.000
+    Frame_1.Parent=BackOrange
+    Frame_1.BackgroundColor3=Color3.fromRGB(239, 171, 83)
+    Frame_1.BackgroundTransparency=0.500
+    Frame_1.Size=UDim2.new(1, 0, 1, 0)
+    LeftOrange.Name="LeftOrange"
+    LeftOrange.Parent=BOESPFolder
+    LeftOrange.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    LeftOrange.AlwaysOnTop=true
+    LeftOrange.Face=Enum.NormalId.Left
+    LeftOrange.LightInfluence=1.000
+    Frame_7.Parent=LeftOrange
+    Frame_7.BackgroundColor3=Color3.fromRGB(239, 171, 83)
+    Frame_7.BackgroundTransparency=0.500
+    Frame_7.Size=UDim2.new(1, 0, 1, 0)
+    RightOrange.Name="RightOrange"
+    RightOrange.Parent=BOESPFolder
+    RightOrange.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    RightOrange.AlwaysOnTop=true
+    RightOrange.Face=Enum.NormalId.Right
+    RightOrange.LightInfluence=1.000
+    Frame_8.Parent=RightOrange
+    Frame_8.BackgroundColor3=Color3.fromRGB(239, 171, 83)
+    Frame_8.BackgroundTransparency=0.500
+    Frame_8.Size=UDim2.new(1, 0, 1, 0)
+    TopOrange.Name="TopOrange"
+    TopOrange.Parent=BOESPFolder
+    TopOrange.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    TopOrange.AlwaysOnTop=true
+    TopOrange.Face=Enum.NormalId.Top
+    TopOrange.LightInfluence=1.000
+    Frame_9.Parent=TopOrange
+    Frame_9.BackgroundColor3=Color3.fromRGB(239, 171, 83)
+    Frame_9.BackgroundTransparency=0.500
+    Frame_9.Size=UDim2.new(1, 0, 1, 0)
+    BottomOrange.Name="BottomOrange"
+    BottomOrange.Parent=BOESPFolder
+    BottomOrange.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    BottomOrange.AlwaysOnTop=true
+    BottomOrange.Face=Enum.NormalId.Bottom
+    BottomOrange.LightInfluence=1.000
+    Frame_10.Parent=BottomOrange
+    Frame_10.BackgroundColor3=Color3.fromRGB(239, 171, 83)
+    Frame_10.BackgroundTransparency=0.500
+    Frame_10.Size=UDim2.new(1, 0, 1, 0)
+    FrontOrange.Name="FrontOrange"
+    FrontOrange.Parent=BOESPFolder
+    FrontOrange.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+    FrontOrange.AlwaysOnTop=true
+    FrontOrange.LightInfluence=1.000
+    Frame_11.Parent=FrontOrange
+    Frame_11.BackgroundColor3=Color3.fromRGB(239, 171, 83)
+    Frame_11.BackgroundTransparency=0.500
+    Frame_11.Size=UDim2.new(1, 0, 1, 0)
+	FPSPING.Name="FPS&PING"
+	FPSPING.Parent=game.Players.LocalPlayer:WaitForChild("PlayerGui")
+	FPSPING.ZIndexBehavior=Enum.ZIndexBehavior.Sibling
+	FPSPING.ResetOnSpawn=false
+	Banner.Name="Banner"
+	Banner.Parent=FPSPING
+	Banner.BackgroundColor3=Color3.fromRGB(255, 255, 255)
+	Banner.BackgroundTransparency=1.000
+	Banner.Position=UDim2.new(0.850000024, 0, 0.0500000007, 0)
+	Banner.Size=UDim2.new(0.150000006, 0, 0.0500000007, 0)
+	Banner.Image="http://www.roblox.com/asset/?id=11584823708"
+	FPSTitle.Name="FPSTitle"
+	FPSTitle.Parent=Banner
+	FPSTitle.BackgroundColor3=Color3.fromRGB(255, 255, 255)
+	FPSTitle.BackgroundTransparency=1.000
+	FPSTitle.Position=UDim2.new(0.158000007, 0, 0.200000003, 0)
+	FPSTitle.Size=UDim2.new(0.185000002, 0, 0.600000024, 0)
+	FPSTitle.Font=Enum.Font.PermanentMarker
+	FPSTitle.Text="FPS:"
+	FPSTitle.TextColor3=Color3.fromRGB(100, 100, 100)
+	FPSTitle.TextScaled=true
+	FPSTitle.TextSize=14.000
+	FPSTitle.TextStrokeTransparency=0.000
+	FPSTitle.TextWrapped=true
+	FPS.Name="FPS"
+	FPS.Parent=Banner
+	FPS.BackgroundColor3=Color3.fromRGB(255, 255, 255)
+	FPS.BackgroundTransparency=1.000
+	FPS.Position=UDim2.new(0.342998326, 0, 0.200000003, 0)
+	FPS.Size=UDim2.new(0.185000002, 0, 0.600000024, 0)
+	FPS.Font=Enum.Font.PermanentMarker
+	FPS.Text="60"
+	FPS.TextColor3=Color3.fromRGB(47, 47, 47)
+	FPS.TextScaled=true
+	FPS.TextSize=14.000
+	FPS.TextStrokeColor3=Color3.fromRGB(255, 255, 255)
+	FPS.TextStrokeTransparency=0.250
+	FPS.TextWrapped=true
+	PINGTitle.Name="PINGTitle"
+	PINGTitle.Parent=Banner
+	PINGTitle.BackgroundColor3=Color3.fromRGB(255, 255, 255)
+	PINGTitle.BackgroundTransparency=1.000
+	PINGTitle.Position=UDim2.new(0.527998209, 0, 0.199999943, 0)
+	PINGTitle.Size=UDim2.new(0.221998021, 0, 0.600000024, 0)
+	PINGTitle.Font=Enum.Font.PermanentMarker
+	PINGTitle.Text="Ping:"
+	PINGTitle.TextColor3=Color3.fromRGB(100, 100, 100)
+	PINGTitle.TextScaled=true
+	PINGTitle.TextSize=14.000
+	PINGTitle.TextStrokeTransparency=0.000
+	PINGTitle.TextWrapped=true
+	PING.Name="PING"
+	PING.Parent=Banner
+	PING.BackgroundColor3=Color3.fromRGB(255, 255, 255)
+	PING.BackgroundTransparency=1.000
+	PING.Position=UDim2.new(0.749994516, 0, 0.199999943, 0)
+	PING.Size=UDim2.new(0.250005215, 0, 0.600000024, 0)
+	PING.Font=Enum.Font.PermanentMarker
+	PING.Text="1ms"
+	PING.TextColor3=Color3.fromRGB(47, 47, 47)
+	PING.TextScaled=true
+	PING.TextSize=14.000
+	PING.TextStrokeColor3=Color3.fromRGB(255, 255, 255)
+	PING.TextStrokeTransparency=0.250
+	PING.TextWrapped=true
+	local BBPlrs=game:GetService("Workspace").Players["Bright blue"]:GetChildren() -- The script runs when a remote event is fired so we're gonna go ahead and add ESP for everyone.
+	for i=1,#BBPlrs do
+		local xActive=BV:Clone()
+		xActive.Parent=BBPlrs[i]
+		local xHead=BBPlrs[i]:FindFirstChild("Head")
+        local BBTop=TopBlue:Clone()
+        BBTop.Parent=xHead
+        local BBBottom=BottomBlue:Clone()
+        BBBottom.Parent=xHead
+        local BBLeft=LeftBlue:Clone()
+        BBLeft.Parent=xHead
+        local BBRight=RightBlue:Clone()
+        BBRight.Parent=xHead
+        local BBFront=FrontBlue:Clone()
+        BBFront.Parent=xHead
+        local BBBack=BackBlue:Clone()
+        BBBack.Parent=xHead
+        local xTorso=BBPlrs[i]:FindFirstChild("Torso")
+        local BBTop=TopBlue:Clone()
+        BBTop.Parent=xTorso
+        local BBBottom=BottomBlue:Clone()
+        BBBottom.Parent=xTorso
+        local BBLeft=LeftBlue:Clone()
+        BBLeft.Parent=xTorso
+        local BBRight=RightBlue:Clone()
+        BBRight.Parent=xTorso
+        local BBFront=FrontBlue:Clone()
+        BBFront.Parent=xTorso
+        local BBBack=BackBlue:Clone()
+        BBBack.Parent=xTorso
+        local xLA=BBPlrs[i]:FindFirstChild("Left Arn")
+        local BBTop=TopBlue:Clone()
+        BBTop.Parent=xLA
+        local BBBottom=BottomBlue:Clone()
+        BBBottom.Parent=xLA
+        local BBLeft=LeftBlue:Clone()
+        BBLeft.Parent=xLA
+        local BBRight=RightBlue:Clone()
+        BBRight.Parent=xLA
+        local BBFront=FrontBlue:Clone()
+        BBFront.Parent=xLA
+        local BBBack=BackBlue:Clone()
+        BBBack.Parent=xLA
+        local xRA=BBPlrs[i]:FindFirstChild("Right Arm")
+        local BBTop=TopBlue:Clone()
+        BBTop.Parent=xRA
+        local BBBottom=BottomBlue:Clone()
+        BBBottom.Parent=xRA
+        local BBLeft=LeftBlue:Clone()
+        BBLeft.Parent=xRA
+        local BBRight=RightBlue:Clone()
+        BBRight.Parent=xRA
+        local BBFront=FrontBlue:Clone()
+        BBFront.Parent=xRA
+        local BBBack=BackBlue:Clone()
+        BBBack.Parent=xRA
+        local xLL=BBPlrs[i]:FindFirstChild("Left Leg")
+        local BBTop=TopBlue:Clone()
+        BBTop.Parent=xLL
+        local BBBottom=BottomBlue:Clone()
+        BBBottom.Parent=xLL
+        local BBLeft=LeftBlue:Clone()
+        BBLeft.Parent=xLL
+        local BBRight=RightBlue:Clone()
+        BBRight.Parent=xLL
+        local BBFront=FrontBlue:Clone()
+        BBFront.Parent=xLL
+        local BBBack=BackBlue:Clone()
+        BBBack.Parent=xLL
+        local xRL=BBPlrs[i]:FindFirstChild("Right Leg")
+        local BBTop=TopBlue:Clone()
+        BBTop.Parent=xRL
+        local BBBottom=BottomBlue:Clone()
+        BBBottom.Parent=xRL
+        local BBLeft=LeftBlue:Clone()
+        BBLeft.Parent=xRL
+        local BBRight=RightBlue:Clone()
+        BBRight.Parent=xRL
+        local BBFront=FrontBlue:Clone()
+        BBFront.Parent=xRL
+        local BBBack=BackBlue:Clone()
+        BBBack.Parent=xRL
+	end
+	local BOPlrs=game:GetService("Workspace").Players["Bright orange"]:GetChildren() -- The script runs when a remote event is fired so we're gonna go ahead and add ESP for everyone.
+	for i=1,#BOPlrs do
+		local xActive=BV:Clone()
+		xActive.Parent=BOPlrs[i]
+		local xHead=BOPlrs[i]:FindFirstChild("Head")
+        local BOTop=TopOrange:Clone()
+        BOTop.Parent=xHead
+        local BOBottom=BottomOrange:Clone()
+        BOBottom.Parent=xHead
+        local BOLeft=LeftOrange:Clone()
+        BOLeft.Parent=xHead
+        local BORight=RightOrange:Clone()
+        BORight.Parent=xHead
+        local BOFront=FrontOrange:Clone()
+        BOFront.Parent=xHead
+        local BOBack=BackOrange:Clone()
+        BOBack.Parent=xHead
+        local xTorso=BOPlrs[i]:FindFirstChild("Torso")
+        local BOTop=TopOrange:Clone()
+        BOTop.Parent=xTorso
+        local BOBottom=BottomOrange:Clone()
+        BOBottom.Parent=xTorso
+        local BOLeft=LeftOrange:Clone()
+        BOLeft.Parent=xTorso
+        local BORight=RightOrange:Clone()
+        BORight.Parent=xTorso
+        local BOFront=FrontOrange:Clone()
+        BOFront.Parent=xTorso
+        local BOBack=BackOrange:Clone()
+        BOBack.Parent=xTorso
+        local xLA=BOPlrs[i]:FindFirstChild("Left Arn")
+        local BOTop=TopOrange:Clone()
+        BOTop.Parent=xLA
+        local BOBottom=BottomOrange:Clone()
+        BOBottom.Parent=xLA
+        local BOLeft=LeftOrange:Clone()
+        BOLeft.Parent=xLA
+        local BORight=RightOrange:Clone()
+        BORight.Parent=xLA
+        local BOFront=FrontOrange:Clone()
+        BOFront.Parent=xLA
+        local BOBack=BackOrange:Clone()
+        BOBack.Parent=xLA
+        local xRA=BOPlrs[i]:FindFirstChild("Right Arm")
+        local BOTop=TopOrange:Clone()
+        BOTop.Parent=xRA
+        local BOBottom=BottomOrange:Clone()
+        BOBottom.Parent=xRA
+        local BOLeft=LeftOrange:Clone()
+        BOLeft.Parent=xRA
+        local BORight=RightOrange:Clone()
+        BORight.Parent=xRA
+        local BOFront=FrontOrange:Clone()
+        BOFront.Parent=xRA
+        local BOBack=BackOrange:Clone()
+        BOBack.Parent=xRA
+        local xLL=BOPlrs[i]:FindFirstChild("Left Leg")
+        local BOTop=TopOrange:Clone()
+        BOTop.Parent=xLL
+        local BOBottom=BottomOrange:Clone()
+        BOBottom.Parent=xLL
+        local BOLeft=LeftOrange:Clone()
+        BOLeft.Parent=xLL
+        local BORight=RightOrange:Clone()
+        BORight.Parent=xLL
+        local BOFront=FrontOrange:Clone()
+        BOFront.Parent=xLL
+        local BOBack=BackOrange:Clone()
+        BOBack.Parent=xLL
+        local xRL=BOPlrs[i]:FindFirstChild("Right Leg")
+        local BOTop=TopOrange:Clone()
+        BOTop.Parent=xRL
+        local BOBottom=BottomOrange:Clone()
+        BOBottom.Parent=xRL
+        local BOLeft=LeftOrange:Clone()
+        BOLeft.Parent=xRL
+        local BORight=RightOrange:Clone()
+        BORight.Parent=xRL
+        local BOFront=FrontOrange:Clone()
+        BOFront.Parent=xRL
+        local BOBack=BackOrange:Clone()
+        BOBack.Parent=xRL
+	end
+end
+local PlrName
+local RE=game:GetService("ReplicatedStorage").RemoteEvent
+RE.OnClientEvent:Connect(function(xSpawn, xArgTwo, xArgThree) -- This is the remote event I was talking about. Originally this script didn't have the names and healthbar so xArgOne was renamed to xSpawn.
+    local xNDClone=NDFolder:WaitForChild("ESPNameDisplay"):Clone()
+    if xSpawn=="newspawn"then -- Checking the first argument included with the fired remote event. Looking for newly spawned players.
+        PlrName=tostring(xArgTwo) -- A player spawned and their name is PlrName.
+        game:GetService("Workspace").Players["Bright blue"].ChildAdded:Connect(function(xChild) -- Now that we know someone has spawned we have to find their body. We're waiting for the team to receive a new child.
+            if xChild:FindFirstChild("ESPNameDisplay") then
+            else
+                xNDClone.Parent=xChild
+                xNDClone.Enabled=true
+                xChild.ESPNameDisplay.MainFrame.Username.Text=PlrName
+				xChild.Name=PlrName
+				if xChild:FindFirstChild("Active") then
+				else
+					local xActive=BV:Clone()
+					xActive.Parent=xChild
+					local xHead=xChild:FindFirstChild("Head")
+					local BBTop=TopBlue:Clone()
+					BBTop.Parent=xHead
+					local BBBottom=BottomBlue:Clone()
+					BBBottom.Parent=xHead
+					local BBLeft=LeftBlue:Clone()
+					BBLeft.Parent=xHead
+					local BBRight=RightBlue:Clone()
+					BBRight.Parent=xHead
+					local BBFront=FrontBlue:Clone()
+					BBFront.Parent=xHead
+					local BBBack=BackBlue:Clone()
+					BBBack.Parent=xHead
+					local xTorso=xChild:FindFirstChild("Torso")
+					local BBTop=TopBlue:Clone()
+					BBTop.Parent=xTorso
+					local BBBottom=BottomBlue:Clone()
+					BBBottom.Parent=xTorso
+					local BBLeft=LeftBlue:Clone()
+					BBLeft.Parent=xTorso
+					local BBRight=RightBlue:Clone()
+					BBRight.Parent=xTorso
+					local BBFront=FrontBlue:Clone()
+					BBFront.Parent=xTorso
+					local BBBack=BackBlue:Clone()
+					BBBack.Parent=xTorso
+					local xLA=xChild:FindFirstChild("Left Arn")
+					local BBTop=TopBlue:Clone()
+					BBTop.Parent=xLA
+					local BBBottom=BottomBlue:Clone()
+					BBBottom.Parent=xLA
+					local BBLeft=LeftBlue:Clone()
+					BBLeft.Parent=xLA
+					local BBRight=RightBlue:Clone()
+					BBRight.Parent=xLA
+					local BBFront=FrontBlue:Clone()
+					BBFront.Parent=xLA
+					local BBBack=BackBlue:Clone()
+					BBBack.Parent=xLA
+					local xRA=xChild:FindFirstChild("Right Arm")
+					local BBTop=TopBlue:Clone()
+					BBTop.Parent=xRA
+					local BBBottom=BottomBlue:Clone()
+					BBBottom.Parent=xRA
+					local BBLeft=LeftBlue:Clone()
+					BBLeft.Parent=xRA
+					local BBRight=RightBlue:Clone()
+					BBRight.Parent=xRA
+					local BBFront=FrontBlue:Clone()
+					BBFront.Parent=xRA
+					local BBBack=BackBlue:Clone()
+					BBBack.Parent=xRA
+					local xLL=xChild:FindFirstChild("Left Leg")
+					local BBTop=TopBlue:Clone()
+					BBTop.Parent=xLL
+					local BBBottom=BottomBlue:Clone()
+					BBBottom.Parent=xLL
+					local BBLeft=LeftBlue:Clone()
+					BBLeft.Parent=xLL
+					local BBRight=RightBlue:Clone()
+					BBRight.Parent=xLL
+					local BBFront=FrontBlue:Clone()
+					BBFront.Parent=xLL
+					local BBBack=BackBlue:Clone()
+					BBBack.Parent=xLL
+					local xRL=xChild:FindFirstChild("Right Leg")
+					local BBTop=TopBlue:Clone()
+					BBTop.Parent=xRL
+					local BBBottom=BottomBlue:Clone()
+					BBBottom.Parent=xRL
+					local BBLeft=LeftBlue:Clone()
+					BBLeft.Parent=xRL
+					local BBRight=RightBlue:Clone()
+					BBRight.Parent=xRL
+					local BBFront=FrontBlue:Clone()
+					BBFront.Parent=xRL
+					local BBBack=BackBlue:Clone()
+					BBBack.Parent=xRL
+				end
+            end
+        end)
+        game:GetService("Workspace").Players["Bright orange"].ChildAdded:Connect(function(xChild) -- Now that we know someone has spawned we have to find their body. We're waiting for the team to receive a new child.
+            if xChild:FindFirstChild("ESPNameDisplay") then
+            else
+                xNDClone.Parent=xChild
+                xNDClone.Enabled=true
+                xChild.ESPNameDisplay.MainFrame.Username.Text=PlrName
+				xChild.Name=PlrName
+				if xChild:FindFirstChild("Active") then
+				else
+					local xActive=BV:Clone()
+					xActive.Parent=xChild
+					local xHead=xChild:FindFirstChild("Head")
+					local BOTop=TopOrange:Clone()
+					BOTop.Parent=xHead
+					local BOBottom=BottomOrange:Clone()
+					BOBottom.Parent=xHead
+					local BOLeft=LeftOrange:Clone()
+					BOLeft.Parent=xHead
+					local BORight=RightOrange:Clone()
+					BORight.Parent=xHead
+					local BOFront=FrontOrange:Clone()
+					BOFront.Parent=xHead
+					local BOBack=BackOrange:Clone()
+					BOBack.Parent=xHead
+					local xTorso=xChild:FindFirstChild("Torso")
+					local BOTop=TopOrange:Clone()
+					BOTop.Parent=xTorso
+					local BOBottom=BottomOrange:Clone()
+					BOBottom.Parent=xTorso
+					local BOLeft=LeftOrange:Clone()
+					BOLeft.Parent=xTorso
+					local BORight=RightOrange:Clone()
+					BORight.Parent=xTorso
+					local BOFront=FrontOrange:Clone()
+					BOFront.Parent=xTorso
+					local BOBack=BackOrange:Clone()
+					BOBack.Parent=xTorso
+					local xLA=xChild:FindFirstChild("Left Arn")
+					local BOTop=TopOrange:Clone()
+					BOTop.Parent=xLA
+					local BOBottom=BottomOrange:Clone()
+					BOBottom.Parent=xLA
+					local BOLeft=LeftOrange:Clone()
+					BOLeft.Parent=xLA
+					local BORight=RightOrange:Clone()
+					BORight.Parent=xLA
+					local BOFront=FrontOrange:Clone()
+					BOFront.Parent=xLA
+					local BOBack=BackOrange:Clone()
+					BOBack.Parent=xLA
+					local xRA=xChild:FindFirstChild("Right Arm")
+					local BOTop=TopOrange:Clone()
+					BOTop.Parent=xRA
+					local BOBottom=BottomOrange:Clone()
+					BOBottom.Parent=xRA
+					local BOLeft=LeftOrange:Clone()
+					BOLeft.Parent=xRA
+					local BORight=RightOrange:Clone()
+					BORight.Parent=xRA
+					local BOFront=FrontOrange:Clone()
+					BOFront.Parent=xRA
+					local BOBack=BackOrange:Clone()
+					BOBack.Parent=xRA
+					local xLL=xChild:FindFirstChild("Left Leg")
+					local BOTop=TopOrange:Clone()
+					BOTop.Parent=xLL
+					local BOBottom=BottomOrange:Clone()
+					BOBottom.Parent=xLL
+					local BOLeft=LeftOrange:Clone()
+					BOLeft.Parent=xLL
+					local BORight=RightOrange:Clone()
+					BORight.Parent=xLL
+					local BOFront=FrontOrange:Clone()
+					BOFront.Parent=xLL
+					local BOBack=BackOrange:Clone()
+					BOBack.Parent=xLL
+					local xRL=xChild:FindFirstChild("Right Leg")
+					local BOTop=TopOrange:Clone()
+					BOTop.Parent=xRL
+					local BOBottom=BottomOrange:Clone()
+					BOBottom.Parent=xRL
+					local BOLeft=LeftOrange:Clone()
+					BOLeft.Parent=xRL
+					local BORight=RightOrange:Clone()
+					BORight.Parent=xRL
+					local BOFront=FrontOrange:Clone()
+					BOFront.Parent=xRL
+					local BOBack=BackOrange:Clone()
+					BOBack.Parent=xRL
+				end
+            end
+        end)
+    end
+	if xSpawn=="updateothershealth"then
+		local xHP=math.round(xArgThree)
+		if xHP>=100 then else
+			local xNewHP=tonumber("0."..xHP)
+			local BBPlrs=game:GetService("Workspace").Players["Bright blue"]:GetChildren()
+			for i=1,#BBPlrs do
+				if BBPlrs[i].Name==tostring(xArgTwo) then
+					BBPlrs[i].ESPNameDisplay.MainFrame.HealthDisplay.Percent.Size=UDim2.new(xNewHP,0,1,0)
+				end
+			end
+			local BOPlrs=game:GetService("Workspace").Players["Bright orange"]:GetChildren()
+			for i=1,#BOPlrs do
+				if BOPlrs[i].Name==tostring(xArgTwo) then
+					BOPlrs[i].ESPNameDisplay.MainFrame.HealthDisplay.Percent.Size=UDim2.new(xNewHP,0,1,0)
+				end
+			end
+		end
+	end
+	local DeadPlrs=game:GetService("Workspace").Ignore.DeadBody:GetChildren()
+	for i=1,#DeadPlrs do
+		DeadPlrs[i]:Destroy()
+	end
+end)
+RunService.RenderStepped:Connect(function()
+    local xFPS=math.round(game:GetService("Stats").FrameRateManager.AverageFPS:GetValue())
+    local xPING=math.round(game:GetService("Stats").Network.ServerStatsItem.Ping:GetValue())
+    game.Players.LocalPlayer.PlayerGui:FindFirstChild("FPS&PING").Banner.FPS.Text=tostring(xFPS)
+    game.Players.LocalPlayer.PlayerGui:FindFirstChild("FPS&PING").Banner.PING.Text=tostring(xPING.."ms")
+end)
